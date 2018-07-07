@@ -2,41 +2,17 @@ import java.util.ArrayList;
 
 public class addressChanger {
 
+    public ArrayList<String> changeAddress(jsonParser address){
 
-    //these list and remove the duplicete crimes. and i think it numbers it too, i cant remember.
-//         ChargeManipulator thing = new ChargeManipulator();
+        ArrayList<String>AddressList = new ArrayList<>();
 
-//        thing.collectCharges();
+        for (int i = 0; i < address.getJson().size(); i++) {
 
-    //this is supposed to be changing the x's in the address but it isnt working. idk why.
-
-
-
-public ArrayList<String> changeAddress(jsonParser address){
-
-//    System.out.println(address.getJson().get(1).getSet());
-
-    ArrayList<String>AddressList = new ArrayList<>();
-
-
-
-    for (int i = 0; i < address.getJson().size(); i++) {
-
-            String newAddress = address.getJson().get(i).getAddress().replace("X", "0");
-
-//            System.out.println(newAddress);
-
-            AddressList.add(newAddress);
-
-//            System.out.println(i + " " + AddressList.get(i));
-
-
+        String newAddress = address.getJson().get(i).getAddress().replace("X", "0");
+        AddressList.add(newAddress);
         }
-
-    return AddressList;
-}
-
-
+        return AddressList;
+    }
 }
 
 

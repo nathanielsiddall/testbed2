@@ -31,6 +31,8 @@ public class operations {
 
         System.out.println(charges3.size());
         System.out.println(charges3.get(ch3Siz).getChargeNumber());
+        System.out.println(charges3.get(ch3Siz).getCharge());
+
 
 
     }
