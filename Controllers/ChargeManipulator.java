@@ -1,3 +1,9 @@
+package Controllers;
+
+import Controllers.jsonParser;
+import Models.chargeNumber;
+import Models.crimeObject;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -8,7 +14,6 @@ public class ChargeManipulator {
     public ArrayList<String> collectCharges() {
 
         jsonParser thing = new jsonParser();
-
         LinkedHashSet<String> list = new LinkedHashSet<>();
 
         for (int i = 0; i < thing.getJson().size(); i++) {
@@ -20,12 +25,11 @@ public class ChargeManipulator {
 
         Iterator<String> setIterator = list.iterator();
 
-        int i =0;
+        int i = 0;
         while (setIterator.hasNext()) {
             numberedList.add(setIterator.next());
 
             i++;
-
         }
         return numberedList;
     }
@@ -33,7 +37,6 @@ public class ChargeManipulator {
     public ArrayList<chargeNumber> changeCharges(ArrayList<String> list){
 
         ArrayList<chargeNumber> charges = new ArrayList<>();
-
 
         for (int i = 0; i < list.size(); i++) {
 
@@ -43,14 +46,16 @@ public class ChargeManipulator {
         return charges;
     }
 
-    //this takes the list from changecharges and the json crimeobject and returns a new crime object with chargenumbers added.
+//this takes the list from changecharges and the json crimeobject and returns a new crime object with chargenumbers added.
     public ArrayList<crimeObject> addChargeNumber(ArrayList<chargeNumber> chargeNumbers, jsonParser crimeObject){
         ArrayList<crimeObject> crimes = new ArrayList<>();
 
         for (int i = 0; i < crimeObject.getJson().size(); i++) {
+
             for (int j = 0; j < chargeNumbers.size(); j++) {
                 String CO = crimeObject.getJson().get(i).getCharge();
                 String CN = chargeNumbers.get(j).getCharge();
+
                 if (CO.equals(CN)){
                     crimes.add(new crimeObject(
                             crimeObject.getJson().get(i).getReportNumber(),
@@ -60,10 +65,8 @@ public class ChargeManipulator {
                             chargeNumbers.get(j).getId()
                             )
                     );
-
                 }
             }
-
         }
         return crimes;
     }

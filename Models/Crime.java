@@ -1,3 +1,5 @@
+package Models;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -64,9 +66,6 @@ public class Crime {
     public void setAddress(String address) {
         this.address = address;
     }
-
-
-
 
     public String getChargeNumber() {
         return chargeNumber;

@@ -1,3 +1,5 @@
+package Models;
+
 public class chargeNumber {
     private String charge;
     private String id;

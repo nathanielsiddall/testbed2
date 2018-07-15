@@ -1,3 +1,4 @@
+package Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,8 +14,6 @@ public class CoordObject {
     @Expose
     private String locationType;
     @SerializedName("viewport")
-//    @Expose
-//    private Viewport viewport;
 
     public Location getLocation() {
         return location;
@@ -31,13 +30,5 @@ public class CoordObject {
     public void setLocationType(String locationType) {
         this.locationType = locationType;
     }
-
-//    public Viewport getViewport() {
-//        return viewport;
-//    }
-
-//    public void setViewport(Viewport viewport) {
-//        this.viewport = viewport;
-//    }
 
 }
