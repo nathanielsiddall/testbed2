@@ -181,8 +181,8 @@ public class operations {
     //it will sout the file to be polished and inputted into a .json file/
     public void go(String inputFileName, String outPutFilename) {
         System.out.println("starting the jsonParser");
-        jsonParser json = new jsonParser(inputFileName);
-        addressChanger address = new addressChanger();
+        JsonParser json = new JsonParser(inputFileName);
+        AddressChanger address = new AddressChanger();
         ChargeManipulator chargeManipulator = new ChargeManipulator();
 
         System.out.println("fixing to makes a list of the charges");
@@ -220,7 +220,7 @@ public class operations {
 
         String fileName = outPutFilename + ".json";
 
-        System.out.println("fixing to write to " + fileName + ".");
+        System.out.println("fixing to write to " + fileName + "in the src/main/resources/json/output");
 
         addCrimesTofile(list, "/Users/computer/IdeaProjects/testbed2/src/main/resources/json/output", fileName);
     }

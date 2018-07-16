@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class jsonParser  {
+public class JsonParser  {
     private String inputFileName;
 
-    public jsonParser(String inputFileName) {
+    public JsonParser(String inputFileName) {
         this.inputFileName = inputFileName;
     }
 

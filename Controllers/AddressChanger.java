@@ -2,10 +2,10 @@ package Controllers;
 
 import java.util.ArrayList;
 
-public class addressChanger {
+public class AddressChanger {
 
 //this converts the address from the 10XX main street format to the 1000 mainstreet format, and adds san antonio tx to the end
-    public ArrayList<String> changeAddress(jsonParser address){
+    public ArrayList<String> changeAddress(JsonParser address){
 
         ArrayList<String>AddressList = new ArrayList<>();
 

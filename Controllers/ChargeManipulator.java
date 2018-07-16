@@ -12,7 +12,7 @@ public class ChargeManipulator {
 //this returns a list of the charges with no duplicates.
     public ArrayList<String> collectCharges(String inputFileName) {
 
-        jsonParser thing = new jsonParser(inputFileName);
+        JsonParser thing = new JsonParser(inputFileName);
         LinkedHashSet<String> list = new LinkedHashSet<>();
 
         for (int i = 0; i < thing.getJson().size(); i++) {
@@ -45,8 +45,8 @@ public class ChargeManipulator {
         return charges;
     }
 
-//this takes the list from changecharges and the json crimeobject and returns a new crime object with chargenumbers added.
-    public ArrayList<crimeObject> addChargeNumber(ArrayList<chargeNumber> chargeNumbers, jsonParser crimeObject){
+//this takes the list from changeCharges and the json crimeobject and returns a new crime object with chargenumbers added.
+    public ArrayList<crimeObject> addChargeNumber(ArrayList<chargeNumber> chargeNumbers, JsonParser crimeObject){
         ArrayList<crimeObject> crimes = new ArrayList<>();
 
         for (int i = 0; i < crimeObject.getJson().size(); i++) {
