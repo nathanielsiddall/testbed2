@@ -1,6 +1,5 @@
 package Controllers;
 
-import Controllers.jsonParser;
 import Models.chargeNumber;
 import Models.crimeObject;
 
@@ -11,9 +10,9 @@ import java.util.LinkedHashSet;
 public class ChargeManipulator {
 
 //this returns a list of the charges with no duplicates.
-    public ArrayList<String> collectCharges() {
+    public ArrayList<String> collectCharges(String inputFileName) {
 
-        jsonParser thing = new jsonParser();
+        jsonParser thing = new jsonParser(inputFileName);
         LinkedHashSet<String> list = new LinkedHashSet<>();
 
         for (int i = 0; i < thing.getJson().size(); i++) {

@@ -6,8 +6,6 @@ public class main {
 
         //ops.go is the trigger to run the main program
         operations ops = new operations();
-
-        ops.go();
+                ops.go("testRawDataSet", "test");
     }
 }
-

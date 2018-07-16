@@ -14,11 +14,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class jsonParser  {
+    private String inputFileName;
+
+    public jsonParser(String inputFileName) {
+        this.inputFileName = inputFileName;
+    }
 
     public List<Crime> getJson() {
 
 //this part takes the .json file and converts it into a one long string.
-        String dataFile = "/Users/computer/IdeaProjects/testbed2/src/main/resources/json/RawDataset.json";
+        String dataFile = "/Users/computer/IdeaProjects/testbed2/src/main/resources/json/input/"+ inputFileName +".json";
 
         Path filePath = Paths.get(dataFile);
         List<String> list = null;
@@ -30,12 +35,10 @@ public class jsonParser  {
                 e.printStackTrace();
             }
 
-            String crimeString = "";
-
+            StringBuilder crimeString = new StringBuilder();
             for (int i = 0; i < Objects.requireNonNull(list).size(); i++) {
 
-                crimeString += list.get(i);
-
+                crimeString.append(list.get(i));
             }
 
 //this section takes the newly created json crimeString and turns it into a list of crime objects
@@ -46,7 +49,7 @@ public class jsonParser  {
             Type foundListType = new TypeToken<ArrayList<Crime>>() {
             }.getType();
 
-             List<Crime> crimes = new Gson().fromJson(crimeString, foundListType);
+             List<Crime> crimes = new Gson().fromJson(crimeString.toString(), foundListType);
 
              return crimes;
         }

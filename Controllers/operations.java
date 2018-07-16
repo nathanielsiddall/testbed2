@@ -1,9 +1,5 @@
 package Controllers;
 
-import Controllers.ChargeManipulator;
-import Controllers.CoordConverter;
-import Controllers.addressChanger;
-import Controllers.jsonParser;
 import Models.CrimesJson;
 import Models.chargeNumber;
 import Models.coordinates;
@@ -11,7 +7,12 @@ import Models.crimeObject;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
@@ -153,30 +154,53 @@ public class operations {
         return coords;
     }
 
+    public void addCrimesTofile(List<String> finalJson, String directory, String fileName){
+
+        Path dataDirectory = Paths.get(directory);
+        Path dataFile = Paths.get(directory, fileName);
+
+        try {
+            if (Files.notExists(dataDirectory) && Files.notExists(dataFile)){
+                Files.createDirectories(dataDirectory);
+                Files.createFile(dataFile);
+            }
+                Path filepath = Paths.get(directory, fileName);
+                Files.write(filepath, finalJson);
+
+
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 //primary run function.
     // it runs JsonParser, which takes the .json file and converts it into a usable java object.
     //then it runs it through thecharge manipulator to get the crime numbers and weights.
     //then it runs it through the address changer to convert the addresses to get a usable number.
     //it the converts it into a JSON format with Gson
     //it will sout the file to be polished and inputted into a .json file/
-    public void go() {
-        jsonParser json = new jsonParser();
-        System.out.println("json parser done");
+    public void go(String inputFileName, String outPutFilename) {
+        System.out.println("starting the jsonParser");
+        jsonParser json = new jsonParser(inputFileName);
         addressChanger address = new addressChanger();
         ChargeManipulator chargeManipulator = new ChargeManipulator();
 
-        ArrayList<String> charges1 = chargeManipulator.collectCharges();
+        System.out.println("fixing to makes a list of the charges");
+        ArrayList<String> charges1 = chargeManipulator.collectCharges(inputFileName);
+        System.out.println("fixing to convert the charges into their numbers");
         ArrayList<chargeNumber> charges2 = chargeManipulator.changeCharges(charges1);
 
+        System.out.println("fixing the address");
         ArrayList<String> newAddresses = address.changeAddress(json);
-        System.out.println("finished fixing the address");
 
+        System.out.println("fixing to manipulate the address");
         ArrayList<crimeObject> charges3 = chargeManipulator.addChargeNumber(charges2, json);
-        System.out.println("finished numbering the charges");
 
-        ArrayList<CrimesJson> finalJson = new ArrayList<>();
+//        ArrayList<CrimesJson> finalJson = new ArrayList<>();
 
-
+        System.out.println("fixing to push the data into the object");
+        Gson gson = null;
+        ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < newAddresses.size(); i++) {
 
             String dateTime = json.getJson().get(i).getDTG();
@@ -184,13 +208,20 @@ public class operations {
             String charge = charges3.get(i).getChargeNumber();
 
             CrimesJson thing = new CrimesJson(newAddresses.get(i), charge, weight, dateTime);
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            finalJson.add(thing);
-            System.out.println(gson.toJson(finalJson));
+            gson = new GsonBuilder().setPrettyPrinting().create();
+//            finalJson.add(thing);
+//            System.out.println(gson.toJson(finalJson));
+            list.add(gson.toJson(thing));
+
+
+//file name goes here
+
         }
-        System.out.println("finished creating the json object");
+
+        String fileName = outPutFilename + ".json";
+
+        System.out.println("fixing to write to " + fileName + ".");
+
+        addCrimesTofile(list, "/Users/computer/IdeaProjects/testbed2/src/main/resources/json/output", fileName);
     }
 }
-
-
-
