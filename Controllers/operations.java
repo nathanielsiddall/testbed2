@@ -13,10 +13,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
 public class operations {
+
+
+
+   private Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+
+    public String getStringInput(String command) {
+        System.out.println(command);
+        return scanner.next();
+    }
 
 //this takes the name of the crimes and converts it through a switch statement into c numbered crime weight.
     public String weightCalculator(String id) {
@@ -222,6 +232,7 @@ public class operations {
 
         System.out.println("fixing to write to " + fileName + "in the src/main/resources/json/output");
 
-        addCrimesTofile(list, "/Users/computer/IdeaProjects/testbed2/src/main/resources/json/output", fileName);
+        addCrimesTofile(list, "/Users/computer/Desktop/JSON/output", fileName);
     }
 }
+

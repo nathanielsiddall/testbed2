@@ -23,7 +23,7 @@ public class JsonParser  {
     public List<Crime> getJson() {
 
 //this part takes the .json file and converts it into a one long string.
-        String dataFile = "/Users/computer/IdeaProjects/testbed2/src/main/resources/json/input/"+ inputFileName +".json";
+        String dataFile = "/Users/computer/Desktop/JSON/input/"+ inputFileName +".json";
 
         Path filePath = Paths.get(dataFile);
         List<String> list = null;

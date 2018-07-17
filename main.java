@@ -6,6 +6,10 @@ public class main {
 
         //ops.go is the trigger to run the main program
         operations ops = new operations();
-                ops.go("testRawDataSet", "test");
+        System.out.println("make sure that your input file is in JSON/input on the desktop");
+                ops.go(ops.getStringInput("what is the input filename with no suffix?"),
+                        ops.getStringInput("what is the output file name with no suffix?"));
+
+
     }
 }
